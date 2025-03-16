@@ -1,5 +1,0 @@
-.inner-bar {
-    -fx-background-image: url("D:\AIMS\sourcecode\src\assets\images\background.png");
-    -fx-background-size: cover;
-    -fx-background-repeat: no-repeat;
-}
