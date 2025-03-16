@@ -1,0 +1,27 @@
+.main-menu .inner-bar {
+    -fx-background-image: url("/assets/images/background.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.main-menu .inner-button {
+	-fx-border-radius: 10px;
+	-fx-background-color: #2F57EF;
+	-fx-text-fill: #fff;
+	-fx-cursor: hand;
+}
+
+.main-menu .inner-button:hover {
+	-fx-background-color: #CFE8FF;
+	-fx-text-fill: #2F57EF;
+}
+
+.main-menu .inner-title-box {
+	-fx-background-image: url("/assets/images/background.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.main-menu .inner-title-box .inner-title {
+	-fx-text-fill: #fff;
+}

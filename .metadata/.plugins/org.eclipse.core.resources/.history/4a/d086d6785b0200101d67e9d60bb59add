@@ -1,0 +1,126 @@
+package controller;
+
+import model.Book;
+import model.DigitalVideoDisc;
+import model.Media;
+import model.Store;
+import java.util.ArrayList;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.image.*;
+import javafx.geometry.Pos;
+
+
+public class MainMenuController {
+
+    @FXML
+    private Button btnLogin;
+
+    @FXML
+    private GridPane gpPopularList;
+    
+    public void handleLogIn() {
+    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	alert.setTitle("Hello");
+    	alert.setHeaderText("This is a test message");
+    	alert.setContentText("You've clicked the buutton.");
+    	alert.showAndWait();
+    }
+    
+    private HBox createMediaItem(Media media) {
+    	HBox itemContainer = new HBox(10);
+    	itemContainer.setPrefSize(200, 250);
+    	itemContainer.getStyleClass().add("inner-box-item");
+    	itemContainer.setAlignment(Pos.CENTER_LEFT);
+    	
+    	ImageView imageView = new ImageView(new Image(media.getImgUrl()));
+    	imageView.setFitWidth(100);
+        imageView.setFitHeight(150);
+        imageView.setPreserveRatio(true);
+        imageView.setLayoutX(50);
+        imageView.setLayoutY(10);
+        
+        Label titleLabel = new Label(media.getTitle());
+        titleLabel.setLayoutX(50);
+        titleLabel.setLayoutY(90);
+        titleLabel.getStyleClass().add("inner-box-item-title");
+        
+        Label costLabel = new Label("$" + media.getCost());
+        costLabel.setLayoutX(50);
+        costLabel.setLayoutY(120);
+        costLabel.setId("inner-box-item-sub-info");
+        
+        Label categoryLabel = new Label(media.getCategory());
+        categoryLabel.setLayoutX(50);
+        categoryLabel.setLayoutY(150);
+        categoryLabel.setId("inner-box-item-sub-info");
+        
+        Button buyButton = new Button("Add to cart");
+        buyButton.getStyleClass().add("inner-box-item-buy-button");
+        
+        Button viewButton = new Button("View detail");
+        viewButton.getStyleClass().add("inner-box-item-view-button");
+        
+        HBox buttonContainer = new HBox(10, buyButton, viewButton);
+        buttonContainer.setAlignment(Pos.CENTER_LEFT);
+        
+        VBox infoBox = new VBox(0);
+        infoBox.setAlignment(Pos.CENTER_LEFT);
+        infoBox.getChildren().addAll(titleLabel, costLabel, categoryLabel, buttonContainer);
+        
+        itemContainer.getChildren().addAll(imageView, infoBox);
+        
+        return itemContainer;
+    }
+    
+    private void popularGridPane(Store store) {
+    	gpPopularList.getChildren().clear(); 
+    	
+        int row = 0, col = 0;
+        for (Media media : store.getItemsInStore()) {
+            HBox itemPane = createMediaItem(media);
+            
+            // Add AnchorPane to GridPane add position (col, row)
+            gpPopularList.add(itemPane, col, row);
+            
+            col++;
+            if (col == 3) { // If 3 columns are filled, move to new row
+                col = 0;
+                row++;
+            }
+        }
+    }
+    
+    @FXML
+    public void initialize() {
+    	Store store = new Store();
+    	DigitalVideoDisc dvd1 = new DigitalVideoDisc("Frozen I", "Animation", 13.99, 100, "Walt Disney");
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Frozen II", "Animation", 15.89, 110, "Walt Disney");
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Snow White", "Animation", 11.84, 92, "Walt Disney");
+		DigitalVideoDisc dvd4 = new DigitalVideoDisc("Doraemon Collections", "Animation", 14.02, 121, "Fujiko Fujio");
+		dvd1.setImgUrl("/assets/images/frozen1.png");
+		dvd2.setImgUrl("/assets/images/frozen2.png");
+		dvd3.setImgUrl("/assets/images/snow-white.png");
+		dvd4.setImgUrl("/assets/images/doraemon.png");
+		
+		ArrayList<String> authors1 = new ArrayList<String>();
+		authors1.add("Danny Poo");
+		Book b1 = new Book("Object-Oriented Programming and Java", "Science", 25.4, authors1);
+		b1.setImgUrl("/assets/images/oop-java.png");
+		ArrayList<String> authors2 = new ArrayList<String>();
+		authors2.add("Global Edition");
+		Book b2 = new Book("Fundamentals of Database Systems", "Science", 19.5, authors1);
+		b2.setImgUrl("assets/images/database.png");
+		b1.addAuthor("Derek Kiong");
+		b1.addAuthor("Swarnalatha Ashok");
+		
+		store.addMedia(dvd1, 10);
+		store.addMedia(dvd2, 10);
+		store.addMedia(dvd3, 10);
+		store.addMedia(b1, 15);
+		store.addMedia(b2, 10);
+		
+        popularGridPane(store); 
+    }
+}

@@ -1,0 +1,52 @@
+package controller;
+
+import model.Media;
+import model.Store;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.image.*;
+
+
+public class MainMenuController {
+
+    @FXML
+    private Button btnLogin;
+
+    @FXML
+    private GridPane gpPopularList;
+    
+    public void handleLogIn() {
+    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	alert.setTitle("Hello");
+    	alert.setHeaderText("This is a test message");
+    	alert.setContentText("You've clicked the buutton.");
+    	alert.showAndWait();
+    }
+    
+    private AnchorPane createMediaItem(Media media) {
+    	AnchorPane anchorPane = new AnchorPane();
+    	anchorPane.setPrefSize(200, 250);
+    	
+    	ImageView imageView = new ImageView(new Image(media.getImgUrl()));
+    	imageView.setFitWidth(100);
+        imageView.setFitHeight(100);
+        imageView.setLayoutX(50);
+        imageView.setLayoutY(10);
+        
+        Label nameLabel = new Label(media.getTitle());
+        nameLabel.setLayoutX(50);
+        nameLabel.setLayoutY(120);
+        
+        Label costLabel = new Label("$" + media.getCost());
+        costLabel.setLayoutX(50);
+        costLabel.setLayoutY(150);
+        
+        Button buyButton = new Button("Add to cart");
+        buyButton.setLayoutX(50);
+        buyButton.setLayoutY(180);
+        
+        anchorPane.getChildren().addAll(imageView, nameLabel, costLabel, buyButton);
+        return anchorPane;
+    }
+}

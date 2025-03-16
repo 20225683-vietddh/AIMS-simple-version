@@ -1,0 +1,19 @@
+package model;
+
+public class DigitalVideoDisc extends Disc {
+	private static int nbDigitalVideoDiscs = 0; 
+	
+	public DigitalVideoDisc(String title, String category, double cost, int length, String director) {			
+		super(generateId(), title, category, cost, length, director);
+	}
+	
+	private static String generateId() {
+		nbDigitalVideoDiscs++;
+		return "DVD" + nbDigitalVideoDiscs;
+	}
+	
+	@Override 
+	public String toString() {
+		return super.toString();
+	}
+}

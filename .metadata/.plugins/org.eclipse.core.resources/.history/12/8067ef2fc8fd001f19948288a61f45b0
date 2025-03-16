@@ -1,0 +1,10 @@
+package model;
+
+public class Test {
+	public static void main(String[] args) {
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("Frozen I", "Animation", 13.99, 100, "Elsa Dinh");
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Frozen II", "Animation", 15.99, 110, "Elsa Dinh");		
+		System.out.println(dvd1);
+		System.out.println(dvd2.toString());
+	}
+}

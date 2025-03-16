@@ -1,0 +1,49 @@
+.main-menu .inner-bar {
+    -fx-background-image: url("/assets/images/background.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.main-menu .inner-button {
+	-fx-border-radius: 10px;
+	-fx-background-color: #2F57EF;
+	-fx-text-fill: #fff;
+	-fx-cursor: hand;
+}
+
+.main-menu .inner-button:hover {
+	-fx-background-color: #CFE8FF;
+	-fx-text-fill: #2F57EF;
+}
+
+.main-menu .inner-title-box {
+	-fx-background-image: url("/assets/images/background.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.main-menu .inner-title-box .inner-title {
+	-fx-text-fill: #fff;
+}
+
+.main-menu .inner-list {
+	-fx-background-color: #fff;
+}
+
+#inner-item-label {
+	-fx-text-fill: #323232;
+	-fx-font-size: 16px;
+	-fx-font-weight: bold;
+}
+
+#inner-buy-button {
+	-fx-border-radius: 10px;
+	-fx-background-color: #C42B1C;
+	-fx-text-fill: #fff;
+	-fx-font-size: 15px;
+}
+
+#inner-box-item {
+	-fx-back-ground-color: #E9F6FF;
+	-fx-border-radius: 10px;
+}

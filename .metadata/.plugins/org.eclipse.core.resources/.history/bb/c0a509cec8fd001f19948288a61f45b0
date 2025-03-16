@@ -1,0 +1,18 @@
+package model;
+
+import java.util.ArrayList;
+
+public class Test {
+	public static void main(String[] args) {
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("Frozen I", "Animation", 13.99, 100, "Elsa Dinh");
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Frozen II", "Animation", 15.99, 110, "Elsa Dinh");		
+		System.out.println(dvd1.toString());
+		System.out.println(dvd2.toString());
+		
+		ArrayList<String> authors1 = new ArrayList<String>();
+		authors1.add("Luong Thi Long An");
+		authors1.add("Dao Thi Dieu Oanh");
+		Book b1 = new Book("Bich Dao xinh dep", "Novel", 2.5, authors1);
+		System.out.println(b1.toString());
+	}
+}
