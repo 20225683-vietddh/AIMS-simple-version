@@ -4,15 +4,31 @@
     -fx-background-repeat: no-repeat;
 }
 
-.main-menu .inner-button {
+.main-menu .inner-login-button {
 	-fx-border-radius: 10px;
-	-fx-background-color: #2F57EF;
+	-fx-background-color: #C42B1C;
 	-fx-text-fill: #fff;
 	-fx-cursor: hand;
 }
 
-.main-menu .inner-button:hover {
-	-fx-background-color: #012357;
+.main-menu .inner-login-button:hover {
+	-fx-background-color: #432125;
+}
+
+.main-menu .inner-search-button {
+	-fx-border-radius: 10px;
+	-fx-background-color: #D0490F;
+	-fx-text-fill: #fff;
+	-fx-font-size: 14px;
+	-fx-cursor: hand;	
+}
+
+.main-menu .inner-search-button:hover {
+	-fx-background-color: #432125;
+}
+
+.main-menu .inner-search-text-field {
+	-fx-font-size: 14px;
 }
 
 .main-menu .inner-title-box {
@@ -27,14 +43,6 @@
 
 .main-menu .inner-list {
 	-fx-background-color: #fff;
-}
-
-.main-menu .inner-search-bar {
-	-fx-prompt-text-fill: gray;  
-    -fx-text-fill: black;
-    -fx-font-size: 15px;             
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
 }
 
 .inner-box-item {

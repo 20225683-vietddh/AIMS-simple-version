@@ -12,13 +12,19 @@ import javafx.geometry.Pos;
 public class MainMenuController {
 
     @FXML
-    private Button btnLogin;
+    private Button loginButton;
 
     @FXML
     private GridPane gpPopularList;
     
     @FXML
     private TextArea searchBar;
+    
+    @FXML
+    private Button searchButton;
+    
+    @FXML
+    private TextField searchTextField;
     
     public void handleLogIn() {
     	Alert alert = new Alert(Alert.AlertType.INFORMATION);
