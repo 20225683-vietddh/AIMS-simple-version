@@ -64,6 +64,7 @@ public class MainMenuController {
     			showAlert("🎉 Add to Cart Successfully", quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
     			this.itemsInCartCount += 1;
     			updateItemsInCartLabel();
+    			cart.show();
     		} catch (NumberFormatException e) {
     			showAlert("ERROR", "❌ Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
     		}

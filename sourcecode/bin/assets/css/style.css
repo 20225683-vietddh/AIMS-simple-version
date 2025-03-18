@@ -65,11 +65,13 @@
 }
 
 .inner-box-item {
-	-fx-background-color: #E9F6FF;
+	-fx-background-image: url("/assets/images/background-3.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
 	-fx-background-radius: 10px;
 	-fx-border-radius: 10px;
 	-fx-border-width: 2px;
-	-fx-padding: 5px;
+	-fx-padding: 10px;
 }
 
 .inner-box-item-title {
