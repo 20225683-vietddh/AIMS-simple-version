@@ -66,11 +66,11 @@
 
 .inner-box-item {
 	-fx-background-image: url("/assets/images/background-3.png");
-    -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
 	-fx-background-radius: 10px;
+	-fx-background-clip: border-box;
 	-fx-border-radius: 10px;
-	-fx-border-width: 2px;
 	-fx-padding: 10px;
 }
 
