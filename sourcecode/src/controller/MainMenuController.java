@@ -2,12 +2,12 @@ package controller;
 
 import model.*;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
 import javafx.geometry.Pos;
-
 
 public class MainMenuController {
 
@@ -26,12 +26,38 @@ public class MainMenuController {
     @FXML
     private TextField searchTextField;
     
+    private Cart cart = new Cart();
+    
     public void handleLogIn() {
     	Alert alert = new Alert(Alert.AlertType.INFORMATION);
     	alert.setTitle("Hello");
     	alert.setHeaderText("This is a test message");
     	alert.setContentText("You've clicked the buutton.");
     	alert.showAndWait();
+    }
+    
+    public void handleAddToCart(Media media) {
+    	TextInputDialog dialog = new TextInputDialog("1");
+    	dialog.setTitle("Add to Cart");
+    	dialog.setHeaderText("Add New Item to Cart");
+    	dialog.setContentText("Please enter the quantity:");
+    	
+    	Optional<String> result = dialog.showAndWait();
+    	
+    	if (result.isPresent()) {
+    		try {
+    			int quantity = Integer.parseInt(result.get());
+    			if (quantity <= 0) {
+    				showAlert("ERROR", "Invalid quantity!", Alert.AlertType.ERROR);
+    				return;
+    			}
+    			
+    			cart.addMedia(media, quantity);
+    			showAlert("Add to Cart Successfully", quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
+    		} catch (NumberFormatException e) {
+    			showAlert("ERROR", "Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
+    		}
+    	}
     }
     
     private HBox createMediaItem(Media media) {
@@ -69,6 +95,7 @@ public class MainMenuController {
         
         Button buyButton = new Button("Add to cart");
         buyButton.getStyleClass().add("inner-box-item-buy-button");
+        buyButton.setOnAction(event -> handleAddToCart(media));
         
         Button viewButton = new Button("View detail");
         viewButton.getStyleClass().add("inner-box-item-view-button");
@@ -102,6 +129,14 @@ public class MainMenuController {
                 row++;
             }
         }
+    }
+    
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);  
+        alert.setContentText(message);
+        alert.showAndWait();
     }
     
     @FXML
