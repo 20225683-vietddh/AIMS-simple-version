@@ -12,23 +12,19 @@ public class Cart {
 	}
 	
 	public void addMedia(Media media, int quantity) {
-		try {
-			if (quantity <= 0) {
-				showAlert("ERROR", "❌ Invalid quantity!", Alert.AlertType.ERROR);
-				return;
-			}
-			
-			int currentTotal = getTotalItems();
-			if (currentTotal + quantity > MAX_NUMBER_ORDERED) {
-				showAlert("ERROR", "❌ Cannot add " + quantity + " item(s) '" + media.getTitle() + "'. The cart will be over 20 items.", Alert.AlertType.ERROR);
-				return;
-			}
-			
-			itemsOrdered.put(media, itemsOrdered.getOrDefault(media, 0) + quantity);
-			showAlert("Add to Cart Successfully", "🎉 " + quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
-		} catch (NumberFormatException e) {
-			showAlert("ERROR", "❌ Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
+		if (quantity <= 0) {
+			showAlert("ERROR", "❌ Invalid quantity!", Alert.AlertType.ERROR);
+			return;
 		}
+		
+		int currentTotal = getTotalItems();
+		if (currentTotal + quantity > MAX_NUMBER_ORDERED) {
+			showAlert("ERROR", "❌ Cannot add " + quantity + " item(s) '" + media.getTitle() + "'. The cart will be over 20 items.", Alert.AlertType.ERROR);
+			return;
+		}
+		
+		itemsOrdered.put(media, itemsOrdered.getOrDefault(media, 0) + quantity);
+		showAlert("Add to Cart Successfully", "🎉 " + quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
 	}
 	
 	public void removeMedia(Media media) {

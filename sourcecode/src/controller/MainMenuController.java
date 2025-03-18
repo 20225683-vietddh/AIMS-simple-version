@@ -53,13 +53,18 @@ public class MainMenuController {
     	Optional<String> result = dialog.showAndWait();
     	
     	if (result.isPresent()) {
-    		int quantity = Integer.parseInt(result.get());
-    		cart.addMedia(media, quantity);
+    		try {
+    			int quantity = Integer.parseInt(result.get());
+        		cart.addMedia(media, quantity);
+        		
+        		this.itemsInCartCount = cart.getItemsOrdered().size();
+    			updateItemsInCartLabel();
+    			
+    			cart.show(); // Print the cart in console log to fix bug
+    		} catch (NumberFormatException e) {
+    			showAlert("ERROR", "❌ Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
+    		}
     		
-    		this.itemsInCartCount = cart.getItemsOrdered().size();
-			updateItemsInCartLabel();
-			
-			cart.show(); // Print the cart in console log to fix bug
     	}
     }
     
@@ -136,6 +141,14 @@ public class MainMenuController {
     
     private void updateItemsInCartLabel() {
         itemsInCartLabel.setText(String.valueOf(itemsInCartCount));
+    }
+    
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);  
+        alert.setContentText(message);
+        alert.showAndWait();
     }
     
     @FXML
