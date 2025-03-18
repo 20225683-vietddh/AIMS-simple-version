@@ -53,21 +53,13 @@ public class MainMenuController {
     	Optional<String> result = dialog.showAndWait();
     	
     	if (result.isPresent()) {
-    		try {
-    			int quantity = Integer.parseInt(result.get());
-    			if (quantity <= 0) {
-    				showAlert("ERROR", "❌ Invalid quantity!", Alert.AlertType.ERROR);
-    				return;
-    			}
-    			
-    			cart.addMedia(media, quantity);
-    			showAlert("🎉 Add to Cart Successfully", quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
-    			this.itemsInCartCount += 1;
-    			updateItemsInCartLabel();
-    			cart.show();
-    		} catch (NumberFormatException e) {
-    			showAlert("ERROR", "❌ Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
-    		}
+    		int quantity = Integer.parseInt(result.get());
+    		cart.addMedia(media, quantity);
+    		
+    		this.itemsInCartCount = cart.getItemsOrdered().size();
+			updateItemsInCartLabel();
+			
+			cart.show(); // Print the cart in console log to fix bug
     	}
     }
     
@@ -140,14 +132,6 @@ public class MainMenuController {
                 row++;
             }
         }
-    }
-    
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);  
-        alert.setContentText(message);
-        alert.showAndWait();
     }
     
     private void updateItemsInCartLabel() {
