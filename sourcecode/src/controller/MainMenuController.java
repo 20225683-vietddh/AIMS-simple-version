@@ -26,7 +26,15 @@ public class MainMenuController {
     @FXML
     private TextField searchTextField;
     
+    @FXML
+    private Button viewCartButton;
+    
+    @FXML
+    private Label itemsInCartLabel;
+    
     private Cart cart = new Cart();
+    
+    private int itemsInCartCount = 0;
     
     public void handleLogIn() {
     	Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -48,14 +56,16 @@ public class MainMenuController {
     		try {
     			int quantity = Integer.parseInt(result.get());
     			if (quantity <= 0) {
-    				showAlert("ERROR", "Invalid quantity!", Alert.AlertType.ERROR);
+    				showAlert("ERROR", "❌ Invalid quantity!", Alert.AlertType.ERROR);
     				return;
     			}
     			
     			cart.addMedia(media, quantity);
-    			showAlert("Add to Cart Successfully", quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
+    			showAlert("🎉 Add to Cart Successfully", quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
+    			this.itemsInCartCount += 1;
+    			updateItemsInCartLabel();
     		} catch (NumberFormatException e) {
-    			showAlert("ERROR", "Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
+    			showAlert("ERROR", "❌ Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
     		}
     	}
     }
@@ -139,6 +149,10 @@ public class MainMenuController {
         alert.showAndWait();
     }
     
+    private void updateItemsInCartLabel() {
+        itemsInCartLabel.setText(String.valueOf(itemsInCartCount));
+    }
+    
     @FXML
     public void initialize() {
     	Store store = new Store();
@@ -189,5 +203,7 @@ public class MainMenuController {
 		store.addMedia(cd1, 20);
 		
         popularGridPane(store); 
+        
+        itemsInCartLabel.setText("0");
     }
 }

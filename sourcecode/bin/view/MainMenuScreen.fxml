@@ -21,12 +21,29 @@
                <children>
                   <Label prefHeight="106.0" prefWidth="814.0" styleClass="inner-title" text="AIMS - An Internet Media Store">
                      <font>
-                        <Font name="System Bold" size="50.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="viewCartButton" mnemonicParsing="false" styleClass="inner-view-cart-button" text="View cart ">
+                           <HBox.margin>
+                              <Insets top="40.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Label fx:id="itemsInCartLabel" styleClass="inner-items-in-cart-label" text="1">
+                           <HBox.margin>
+                              <Insets left="3" top="40.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="670.0" />
+                     </HBox.margin>
+                  </HBox>
                </children>
                <VBox.margin>
                   <Insets />

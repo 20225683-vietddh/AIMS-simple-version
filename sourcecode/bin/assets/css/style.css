@@ -31,6 +31,25 @@
 	-fx-font-size: 14px;
 }
 
+.main-menu .inner-view-cart-button {
+	-fx-border-radius: 10px;
+	-fx-background-color: #D0490F;
+	-fx-text-fill: #fff;
+	-fx-font-size: 15px;
+	-fx-cursor: hand;
+}
+
+.main-menu .inner-view-cart-button:hover {
+	-fx-background-color: #432125;
+}
+
+.main-menu .inner-items-in-cart-label {
+	-fx-background-color: #C42B1C;
+	-fx-text-fill: #fff;
+	-fx-font-size: 20px;
+	-fx-padding: 0 5px 0 5px;
+}
+
 .main-menu .inner-title-box {
 	-fx-background-image: url("/assets/images/background.jpg");
     -fx-background-size: cover;
@@ -68,6 +87,7 @@
 	-fx-background-color: #C42B1C;
 	-fx-text-fill: #fff;
 	-fx-font-size: 15px;
+	-fx-cursor: hand;
 }
 
 .inner-box-item-buy-button:hover {
@@ -79,6 +99,7 @@
 	-fx-background-color: #C42B1C;
 	-fx-text-fill: #fff;
 	-fx-font-size: 15px;
+	-fx-cursor: hand;
 }
 
 .inner-box-item-view-button:hover {
