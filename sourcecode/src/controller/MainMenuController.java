@@ -198,9 +198,9 @@ public class MainMenuController {
 		store.addMedia(dvd3, 10);
 		store.addMedia(dvd4, 20);
 		store.addMedia(dvd5,  5);
-		store.addMedia(b1, 15);
+		store.addMedia(b3, 15);
 		store.addMedia(b2, 10);
-		store.addMedia(b3, 5);
+		store.addMedia(b1, 5);
 		store.addMedia(cd1, 20);
 		
         popularGridPane(store); 
