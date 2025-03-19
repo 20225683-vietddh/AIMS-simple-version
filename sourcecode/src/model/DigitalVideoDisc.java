@@ -1,5 +1,8 @@
 package model;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class DigitalVideoDisc extends Disc implements Playable {
 	private static int nbDigitalVideoDiscs = 0; 
 	
@@ -14,6 +17,15 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	
 	@Override
 	public void play() {
-		System.out.println("DVD '" + this.getTitle() + "' is playing.");
+		showAlert("Playing a Demo Part", "🎵 DVD '" + this.getTitle() + "' is playing 🎵", AlertType.CONFIRMATION);
+		System.out.println("🎵 DVD '" + this.getTitle() + "' is playing 🎵");
 	}
+	
+	private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);  
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

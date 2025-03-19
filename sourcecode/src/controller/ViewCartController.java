@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 
-
 public class ViewCartController {
 
     @FXML
@@ -69,6 +68,7 @@ public class ViewCartController {
     public void initialize() {
     	setupTable();
     	loadCartItems();
+    	displayTotalCostLabel();
     }
     
     private void setupTable() {
@@ -95,9 +95,44 @@ public class ViewCartController {
             Double totalCost = media.getCost() * quantity;
             return new ReadOnlyObjectWrapper<>(totalCost);
         });
+        
+        itemsListTable.setOnMouseClicked(event -> {
+        	Media media = itemsListTable.getSelectionModel().getSelectedItem();
+            if (media != null) {
+                removeButton.setVisible(true);
+                playButton.setVisible(media instanceof Playable);
+            } else {
+            	removeButton.setVisible(false);
+            	playButton.setVisible(false);
+            }
+        });
+    }
+    
+    public void handlePlay() {
+    	Media media = itemsListTable.getSelectionModel().getSelectedItem();
+    	if (media instanceof Playable) {
+    		((Playable) media).play();
+    	}
+    }
+    
+    public void handleRemove() {
+    	Media media = itemsListTable.getSelectionModel().getSelectedItem();
+    	boolean isSuccessful = cart.removeMedia(media);
+    	if (isSuccessful) {
+    		itemsListTable.getItems().remove(media);
+    	}
+    	removeButton.setVisible(false);
+    	playButton.setVisible(false);
+    	displayTotalCostLabel();
+    	cart.show(); // Print the current cart in console log to fix bug
     }
     
     private void loadCartItems() {
         itemsListTable.getItems().setAll(cart.getItemsOrdered().keySet());
+    }
+    
+    private void displayTotalCostLabel() {
+    	double totalCost = cart.totalCost();
+    	totalCostLabel.setText(String.format("%.2f$", totalCost));
     }
 }

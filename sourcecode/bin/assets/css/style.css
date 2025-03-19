@@ -128,4 +128,8 @@
 .cart .inner-place-order-button:hover, .cart .inner-play-button:hover, .cart .inner-remove-button:hover, .cart .inner-back-button:hover {
 	-fx-background-color: #432125;
 }
+
+.cart .inner-total-cost-label, .cart .inner-total-cost {
+	-fx-text-fill: #2F57EF;
+}
 /* End of Cart Screen */

@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
-import javafx.stage.Modality;
 import java.io.IOException;
 
 public class MainMenuController {
@@ -87,12 +86,10 @@ public class MainMenuController {
     		loader.setController(controller);
     		
     		Parent root = loader.load();
-    	    Stage cartStage = new Stage();
+    		Scene newScene = new Scene(root);
+    		Stage cartStage = (Stage) loginButton.getScene().getWindow();
     	    cartStage.setTitle("Cart Screen");
-    	    cartStage.setScene(new Scene(root));
-    	    cartStage.initModality(Modality.WINDOW_MODAL);
-    	    cartStage.initOwner(loginButton.getScene().getWindow());
-    	    cartStage.show();
+    	    cartStage.setScene(newScene);
     	} catch (IOException e) {
     	    showAlert("ERROR", "❌ Error when loading file CartScreen.fxml: " + e.getMessage(), Alert.AlertType.ERROR);
     	    e.printStackTrace();

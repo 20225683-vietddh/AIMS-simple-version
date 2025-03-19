@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class CompactDisc extends Disc implements Playable {
 	private String artist;
@@ -38,6 +40,15 @@ public class CompactDisc extends Disc implements Playable {
 	
 	@Override 
 	public void play() {
-		System.out.println("CD '" + this.getTitle() + "' is playing.");
+		showAlert("Playing a Demo Part", "🎵 CD '" + this.getTitle() + "' is playing 🎵", AlertType.CONFIRMATION);
+		System.out.println("🎵 CD '" + this.getTitle() + "' is playing 🎵");
 	}
+	
+	private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);  
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

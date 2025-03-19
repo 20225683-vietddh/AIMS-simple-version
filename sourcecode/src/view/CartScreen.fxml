@@ -75,7 +75,7 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Total Cost: ">
+                              <Label styleClass="inner-total-cost-label" text="Total Cost: ">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -83,7 +83,7 @@
                                     <Insets left="80.0" top="50.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="totalCostLabel" text="00.00$">
+                              <Label styleClass="inner-total-cost" fx:id="totalCostLabel" text="00.00$">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -107,7 +107,7 @@
             </HBox>
             <HBox prefHeight="50.0" prefWidth="1205.0">
                <children>
-                  <Button fx:id="playButton" mnemonicParsing="false" styleClass="inner-play-button" text="Play">
+                  <Button fx:id="playButton" onAction="#handlePlay" visible="false" mnemonicParsing="false" styleClass="inner-play-button" text="Play">
                      <HBox.margin>
                         <Insets left="1093.0" top="5.0" />
                      </HBox.margin>
@@ -115,7 +115,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="removeButton" alignment="BASELINE_RIGHT" mnemonicParsing="false" styleClass="inner-remove-button" text="Remove">
+                  <Button fx:id="removeButton" onAction="#handleRemove" visible="false" alignment="BASELINE_RIGHT" mnemonicParsing="false" styleClass="inner-remove-button" text="Remove">
                      <HBox.margin>
                         <Insets left="6.0" top="5.0" />
                      </HBox.margin>

@@ -24,21 +24,23 @@ public class Cart {
 		}
 		
 		itemsOrdered.put(media, itemsOrdered.getOrDefault(media, 0) + quantity);
-		showAlert("Add to Cart Successfully", "🎉 " + quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
+		showAlert("Added to Cart Successfully", "🎉 " + quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
 	}
 	
-	public void removeMedia(Media media) {
+	public boolean removeMedia(Media media) {
 		if (media == null) {
-			System.out.println("❌ Invalid media.");
-			return;
+			showAlert("ERROR", "❌ No chosen item!", Alert.AlertType.ERROR);
+			return false;
 		}
 		
-		if (itemsOrdered.containsKey(media)) {
-			itemsOrdered.remove(media);
-			System.out.println("Deleted '" + media.getTitle() + "' from cart.");
-		} else {
-			System.out.println("❌ Item '" + media.getTitle() + "' does not exist in current cart.");
+		if (!itemsOrdered.containsKey(media)) {
+			showAlert("ERROR", "❌ Item '" + media.getTitle() + "' does not exist in the current cart.", Alert.AlertType.ERROR);
+			return false;
 		}
+		
+		itemsOrdered.remove(media);
+		showAlert("Removed Successfully", "🎉 '" + media.getTitle() + "' has/have been removed from cart!", Alert.AlertType.INFORMATION);	
+		return true;
 	}
 	
 	public void updateQuantity(Media media, int newQuantity) {
