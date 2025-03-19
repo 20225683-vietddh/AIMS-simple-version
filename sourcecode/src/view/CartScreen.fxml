@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane stylesheets="@/assets/css/style.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1540.0" styleClass="cart" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="780.0" prefWidth="1540.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #e7e7e7;" styleClass="inner-title-box">
+               <children>
+                  <Label prefHeight="66.0" prefWidth="383.0" styleClass="inner-title" text="Your Current Cart ">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="searchTextField" prefWidth="800.0" promptText="Search something...">
+                     <HBox.margin>
+                        <Insets left="30.0" top="19.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <RadioButton fx:id="byTitleButton" mnemonicParsing="false" selected="true" text="By Title">
+                     <HBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="byRadioButton" mnemonicParsing="false" text="By Category ">
+                     <HBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <HBox prefHeight="520.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="itemsListTable" prefHeight="500.0" prefWidth="1190.0">
+                    <columns>
+                      <TableColumn fx:id="sttColumn" prefWidth="75.0" text="No." />
+                        <TableColumn fx:id="titleColumn" prefWidth="524.7999877929688" text="Title" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="145.5999755859375" text="Category" />
+                        <TableColumn fx:id="costColumn" prefWidth="142.4000244140625" text="Cost" />
+                        <TableColumn fx:id="quantityColumn" prefWidth="158.400146484375" text="Quantity" />
+                        <TableColumn fx:id="totalColumn" prefWidth="141.5999511718751" text="Total" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </TableView>
+                  <VBox prefHeight="200.0" prefWidth="333.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Total Cost: ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="80.0" top="50.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="totalCostLabel" text="00.00$">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="50.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Button fx:id="placeOrderButton" mnemonicParsing="false" styleClass="inner-place-order-button" text="Place Order">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="100.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="1205.0">
+               <children>
+                  <Button fx:id="playButton" mnemonicParsing="false" styleClass="inner-play-button" text="Play">
+                     <HBox.margin>
+                        <Insets left="1093.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="removeButton" alignment="BASELINE_RIGHT" mnemonicParsing="false" styleClass="inner-remove-button" text="Remove">
+                     <HBox.margin>
+                        <Insets left="6.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="backToMainButton" mnemonicParsing="false" styleClass="inner-back-button" text="&lt; Back to Main Screen">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" top="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

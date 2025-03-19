@@ -4,10 +4,16 @@ import model.*;
 import java.util.ArrayList;
 import java.util.Optional;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.geometry.Pos;
+import javafx.stage.Stage;
+import javafx.stage.Modality;
+import java.io.IOException;
 
 public class MainMenuController {
 
@@ -65,6 +71,31 @@ public class MainMenuController {
     			showAlert("ERROR", "❌ Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
     		}
     		
+    	}
+    }
+    
+    public void handleViewCart() {
+    	if (this.cart.getItemsOrdered().isEmpty()) {
+    		showAlert("ERROR", "❌ The current cart is empty!", Alert.AlertType.ERROR);
+    		return;
+    	}
+    	
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CartScreen.fxml"));
+    	    
+    		ViewCartController controller = new ViewCartController(this.cart);
+    		loader.setController(controller);
+    		
+    		Parent root = loader.load();
+    	    Stage cartStage = new Stage();
+    	    cartStage.setTitle("Cart Screen");
+    	    cartStage.setScene(new Scene(root));
+    	    cartStage.initModality(Modality.WINDOW_MODAL);
+    	    cartStage.initOwner(loginButton.getScene().getWindow());
+    	    cartStage.show();
+    	} catch (IOException e) {
+    	    showAlert("ERROR", "❌ Error when loading file CartScreen.fxml: " + e.getMessage(), Alert.AlertType.ERROR);
+    	    e.printStackTrace();
     	}
     }
     

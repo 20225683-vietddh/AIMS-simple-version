@@ -29,7 +29,7 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="viewCartButton" mnemonicParsing="false" styleClass="inner-view-cart-button" text="View cart ">
+                        <Button fx:id="viewCartButton" mnemonicParsing="false" styleClass="inner-view-cart-button" text="View cart" onAction="#handleViewCart">
                            <HBox.margin>
                               <Insets top="40.0" />
                            </HBox.margin>
