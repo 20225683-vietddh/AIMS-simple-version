@@ -1,15 +1,18 @@
 package controller;
 
+import model.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import java.util.Optional;
 
 public class ViewCartController {
 
@@ -117,14 +120,26 @@ public class ViewCartController {
     
     public void handleRemove() {
     	Media media = itemsListTable.getSelectionModel().getSelectedItem();
-    	boolean isSuccessful = cart.removeMedia(media);
-    	if (isSuccessful) {
-    		itemsListTable.getItems().remove(media);
+    	
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("CONFIRM DELETE");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure to delete '" + media.getTitle() + "' from the current cart?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+    	if (result.isPresent() && result.get() == ButtonType.OK) {
+    		boolean isSuccessful = cart.removeMedia(media);
+        	if (isSuccessful) {
+        		itemsListTable.getItems().remove(media);
+        	}
+        	
+        	removeButton.setVisible(false);
+        	playButton.setVisible(false);
+        	displayTotalCostLabel();
     	}
-    	removeButton.setVisible(false);
-    	playButton.setVisible(false);
-    	displayTotalCostLabel();
-    	cart.show(); // Print the current cart in console log to fix bug
+    	
+    	cart.show(); // Print the current cart in console log to find bug
     }
     
     private void loadCartItems() {
