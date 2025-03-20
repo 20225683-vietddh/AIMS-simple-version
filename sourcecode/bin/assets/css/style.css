@@ -108,24 +108,24 @@
 
 /* Cart Screen */
 .cart {
-	-fx-background-image: url("/assets/images/background-4.png");
-    -fx-background-size: cover;
-    -fx-background-repeat: no-repeat;
+	-fx-background-color: linear-gradient(to top, #F3BD67, #F4E5C2);
 }
 
 .cart .inner-title-box {
 	-fx-background-image: url("/assets/images/background.jpg");
     -fx-background-size: cover;
+    -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-}
-
-.cart .inner-items-table {
-	-fx-font-size: 15px;
 }
 
 .cart .inner-title-box .inner-title {
 	-fx-text-fill: fff;
 	-fx-font-weight: bold;
+}
+
+.cart .inner-items-table {
+	-fx-font-size: 15px;
+	-fx-border-radius: 10px;
 }
 
 .cart .inner-place-order-button, .cart .inner-play-button, .cart .inner-remove-button, .cart .inner-back-button {
