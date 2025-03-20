@@ -115,6 +115,7 @@ public class ViewCartController {
     	Media media = itemsListTable.getSelectionModel().getSelectedItem();
     	if (media instanceof Playable) {
     		((Playable) media).play();
+    		showAlert("ENJOY A DEMO PART", "🎵 '" + media.getTitle() + "' is being played 🎵", Alert.AlertType.INFORMATION);
     	}
     }
     
@@ -149,5 +150,13 @@ public class ViewCartController {
     private void displayTotalCostLabel() {
     	double totalCost = cart.totalCost();
     	totalCostLabel.setText(String.format("%.2f$", totalCost));
+    }
+    
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);  
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
