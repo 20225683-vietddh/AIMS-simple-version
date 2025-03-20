@@ -1,7 +1,6 @@
 package model;
 
 import java.util.*;
-import javafx.scene.control.Alert;
 
 public class Cart {
 	private Map<Media, Integer> itemsOrdered = new HashMap<Media, Integer>();
@@ -11,35 +10,35 @@ public class Cart {
 		return this.itemsOrdered;
 	}
 	
-	public void addMedia(Media media, int quantity) {
+	public boolean addMedia(Media media, int quantity) {
 		if (quantity <= 0) {
-			showAlert("ERROR", "❌ Invalid quantity!", Alert.AlertType.ERROR);
-			return;
+			System.out.println("Invalid quantity!");
+			return false;
 		}
 		
-		int currentTotal = getTotalItems();
-		if (currentTotal + quantity > MAX_NUMBER_ORDERED) {
-			showAlert("ERROR", "❌ Cannot add " + quantity + " item(s) '" + media.getTitle() + "'. The cart will be over 20 items.", Alert.AlertType.ERROR);
-			return;
+		if (isCartLimitExceeded(quantity)) {
+			System.out.println("❌ Cannot add " + quantity + " item(s) '" + media.getTitle() + "'. The cart will be over 20 items.");
+			return false;
 		}
 		
 		itemsOrdered.put(media, itemsOrdered.getOrDefault(media, 0) + quantity);
-		showAlert("Added to Cart Successfully", "🎉 " + quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!", Alert.AlertType.INFORMATION);
+		System.out.println("Added to Cart Successfully 🎉 " + quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart!");
+		return true;
 	}
 	
 	public boolean removeMedia(Media media) {
 		if (media == null) {
-			showAlert("ERROR", "❌ No chosen item!", Alert.AlertType.ERROR);
+			System.out.println("Invalid media");
 			return false;
 		}
 		
 		if (!itemsOrdered.containsKey(media)) {
-			showAlert("ERROR", "❌ Item '" + media.getTitle() + "' does not exist in the current cart.", Alert.AlertType.ERROR);
+			System.out.println("❌ Item '" + media.getTitle() + "' does not exist in the current cart.");
 			return false;
 		}
 		
 		itemsOrdered.remove(media);
-		showAlert("Removed Successfully", "🎉 '" + media.getTitle() + "' has/have been removed from cart!", Alert.AlertType.INFORMATION);	
+		System.out.println("Removed Successfully 🎉 '" + media.getTitle() + "' has/have been removed from cart!");	
 		return true;
 	}
 	
@@ -136,7 +135,7 @@ public class Cart {
 		System.out.println();
 	}
 	
-	private int getTotalItems() {
+	public int getTotalItems() {
 		int total = 0;
 		for (int quantity : itemsOrdered.values()) {
 			total += quantity;
@@ -144,11 +143,11 @@ public class Cart {
 		return total;
 	}
 	
-	private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);  
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+	public boolean isCartLimitExceeded(int quantity) {
+		return getTotalItems() + quantity > MAX_NUMBER_ORDERED;
+	}
+	
+	public boolean isEmpty() {
+		return this.itemsOrdered.isEmpty();
+	}
 }

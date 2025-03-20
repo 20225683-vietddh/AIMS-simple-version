@@ -41,12 +41,24 @@ public class MainMenuController {
     
     private int itemsInCartCount = 0;
     
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);  
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
     public void handleLogIn() {
     	Alert alert = new Alert(Alert.AlertType.INFORMATION);
     	alert.setTitle("Hello");
     	alert.setHeaderText("This is a test message");
     	alert.setContentText("You've clicked the buutton.");
     	alert.showAndWait();
+    }
+    
+    private void updateItemsInCartLabel() {
+        itemsInCartLabel.setText(String.valueOf(itemsInCartCount));
     }
     
     public void handleAddToCart(Media media) {
@@ -59,12 +71,25 @@ public class MainMenuController {
     	
     	if (result.isPresent()) {
     		try {
-    			int quantity = Integer.parseInt(result.get());
-        		cart.addMedia(media, quantity);
-        		
-        		this.itemsInCartCount = cart.getItemsOrdered().size();
-    			updateItemsInCartLabel();
+    			int quantity = Integer.parseInt(result.get());    			
+    			if (quantity <= 0) {
+    				showAlert("ERROR", "❌ " + quantity + " is an invalid quantity ❌", Alert.AlertType.ERROR);
+    				return;
+    			}
     			
+    			if (cart.isCartLimitExceeded(quantity)) {
+    				showAlert("ERROR", "❌ Cannot add " + quantity + " item(s) '" + media.getTitle() + "'. The cart will be over 20 items ❌", Alert.AlertType.ERROR);
+    				return;
+    			}
+    			
+        		boolean isSuccessful = cart.addMedia(media, quantity);
+        		
+        		if (isSuccessful) {
+        			this.itemsInCartCount = cart.getItemsOrdered().size();
+        			updateItemsInCartLabel();
+        			showAlert("Added Successfully", "🎉 " + quantity + " item(s) '" + media.getTitle() + "' has/have been added to cart 🎉", Alert.AlertType.INFORMATION);
+        		}
+        		
     			cart.show(); // Print the cart in console log to fix bug
     		} catch (NumberFormatException e) {
     			showAlert("ERROR", "❌ Not a number. Please enter a positive integer!", Alert.AlertType.ERROR);
@@ -74,7 +99,7 @@ public class MainMenuController {
     }
     
     public void handleViewCart() {
-    	if (this.cart.getItemsOrdered().isEmpty()) {
+    	if (this.cart.isEmpty()) {
     		showAlert("ERROR", "❌ The current cart is empty!", Alert.AlertType.ERROR);
     		return;
     	}
@@ -92,7 +117,7 @@ public class MainMenuController {
     	    cartStage.setScene(newScene);
     	} catch (IOException e) {
     	    showAlert("ERROR", "❌ Error when loading file CartScreen.fxml: " + e.getMessage(), Alert.AlertType.ERROR);
-    	    e.printStackTrace();
+    	    e.printStackTrace(); // Print in console log to find bug
     	}
     }
     
@@ -165,18 +190,6 @@ public class MainMenuController {
                 row++;
             }
         }
-    }
-    
-    private void updateItemsInCartLabel() {
-        itemsInCartLabel.setText(String.valueOf(itemsInCartCount));
-    }
-    
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);  
-        alert.setContentText(message);
-        alert.showAndWait();
     }
     
     @FXML
