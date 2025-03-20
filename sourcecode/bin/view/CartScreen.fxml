@@ -20,7 +20,7 @@
                <children>
                   <Label prefHeight="66.0" prefWidth="383.0" styleClass="inner-title" text="Your Current Cart ">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="35.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="30.0" />
@@ -58,7 +58,7 @@
             </HBox>
             <HBox prefHeight="520.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="itemsListTable" prefHeight="500.0" prefWidth="1190.0">
+                  <TableView styleClass="inner-items-table" fx:id="itemsListTable" prefHeight="500.0" prefWidth="1190.0">
                     <columns>
                       <TableColumn fx:id="sttColumn" prefWidth="75.0" text="No." />
                         <TableColumn fx:id="titleColumn" prefWidth="524.7999877929688" text="Title" />
