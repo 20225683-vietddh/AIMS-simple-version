@@ -5,4 +5,4 @@
 ```
 git clone https://github.com/Din19062004/AIMS-simple-version.git
 ```
-![Home page](https://imgur.com/nM4Bk1G.png)
+![Home page](https://imgur.com/1ZCFQI5.png)
