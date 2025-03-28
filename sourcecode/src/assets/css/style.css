@@ -125,7 +125,15 @@
 
 .cart .inner-items-table {
 	-fx-font-size: 15px;
-	-fx-border-radius: 10px;
+}
+.cart .inner-items-table .table-row-cell:selected {
+	-fx-background-color: #D0490F;
+	-fx-text-fill: #fff;
+	-fx-cursor: hand;
+}
+
+.cart .inner-items-table .table-row-cell:first {
+	-fx-background-color: #F3BD67; 
 }
 
 .cart .inner-place-order-button, .cart .inner-play-button, .cart .inner-remove-button, .cart .inner-back-button {
